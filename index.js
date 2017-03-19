@@ -9,11 +9,12 @@ state的变化引起视图变化
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore,applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 import todoApp from "./src/reducers/index"
 import App from "./src/components/App"
 
-let store = createStore(todoApp)
+let store = createStore(todoApp,applyMiddleware(thunk))
 // 每次state变化都会触发此方法
 store.subscribe(function () {
 	// 打印状态树
